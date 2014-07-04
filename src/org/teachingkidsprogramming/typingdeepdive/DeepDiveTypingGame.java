@@ -9,11 +9,14 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import org.teachingkidsprogramming.typingdeepdive.Shark.PlayState;
+
+import com.spun.util.NumberUtils;
 import com.spun.util.WindowUtils;
 
-public class DeepDiveTypingGame implements KeyListener
+public class DeepDiveTypingGame implements KeyListener, PlayStateListener
 {
-  private JPanel          view   = new DeepDiveTypingView(this);
+  public JPanel           view   = new DeepDiveTypingView(this);
   public ArrayList<Shark> actors = new ArrayList<Shark>();
   private void launchWindow()
   {
@@ -22,8 +25,14 @@ public class DeepDiveTypingGame implements KeyListener
   }
   private void startGame()
   {
-    actors.add(new Shark());
+    addShark();
     startClock();
+  }
+  public void addShark()
+  {
+    Shark shark = new Shark(Words.next(), NumberUtils.getRandomInt(1, 1000));
+    shark.addListener(this);
+    actors.add(shark);
   }
   private void startClock()
   {
@@ -71,5 +80,19 @@ public class DeepDiveTypingGame implements KeyListener
   public void keyReleased(KeyEvent e)
   {
     processLetter(e.getKeyChar());
+  }
+  @Override
+  public void playStateChanged(Shark shark)
+  {
+    PlayState state = shark.getState();
+    switch (state)
+    {
+      case Killed :
+        addShark();
+        actors.remove(shark);
+        break;
+      default :
+        break;
+    }
   }
 }

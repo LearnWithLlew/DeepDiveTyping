@@ -1,0 +1,6 @@
+Shark{word:word
+completed:word
+topRight:java.awt.Point[x=1000,y=200]
+state:Killed}
+Selected
+Killed

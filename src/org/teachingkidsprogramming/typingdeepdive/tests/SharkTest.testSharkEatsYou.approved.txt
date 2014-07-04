@@ -1,0 +1,4 @@
+Shark{word:loser
+completed:
+topRight:java.awt.Point[x=0,y=200]
+state:Killing}
