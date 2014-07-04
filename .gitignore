@@ -1,0 +1,7 @@
+*.class
+/bin
+*.received.*
+# Package Files #
+
+*.war
+*.ear
