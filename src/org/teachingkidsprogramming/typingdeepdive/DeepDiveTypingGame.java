@@ -35,7 +35,7 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   }
   public void addShark()
   {
-    Shark shark = new Shark(Words.next(), NumberUtils.getRandomInt(1, 1000));
+    Shark shark = new Shark(Words.next(), NumberUtils.getRandomInt(100, 900));
     shark.addListener(this);
     actors.add(shark);
   }

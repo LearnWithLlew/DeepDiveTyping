@@ -2,9 +2,15 @@ package org.teachingkidsprogramming.typingdeepdive;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 
 import com.spun.util.ArrayUtils;
 
@@ -14,13 +20,15 @@ public class Shark
     Active, Selected, Killed, Killing
   };
   public static final int              speed     = 1000 / (15 * 25);
+  private static Image                 image;
   private String                       word;
   private int                          typed     = 0;
-  private Dimension                    outer     = new Dimension(200, 50);
+  public Dimension                     outer     = new Dimension(160, 70);
   private int                          diver     = 75;
   private Point                        topRight;
   private PlayState                    state;
   private ArrayList<PlayStateListener> listeners = new ArrayList<PlayStateListener>();
+  private int                          frames;
   public Shark()
   {
     this("Samantha", 200);
@@ -39,10 +47,37 @@ public class Shark
     double yScale = box.getHeight() / 1000.0;
     int xPosition = (int) ((xScale * topRight.x) + diver);
     int yPosition = (int) (yScale * topRight.y);
+    drawBody(g, xPosition, yPosition);
+    drawText(g, xPosition, yPosition);
+  }
+  private void drawBody(Graphics g, int xPosition, int yPosition)
+  {
+    Image image = loadImage();
+    int width = image.getWidth(null) / 20;
+    int height = image.getHeight(null);
+    int start = (frames % 20) * width;
+    g.drawImage(image, xPosition, yPosition, xPosition + width, yPosition + height, start, 0, start + width,
+        height, null);
+  }
+  public static Image loadImage()
+  {
+    if (image == null)
+    {
+      image = new ImageIcon(Shark.class.getResource("shark_basic_swim.png")).getImage();
+    }
+    return image;
+  }
+  public void drawText(Graphics g, int xPosition, int yPosition)
+  {
+    g.setFont(new Font("Cambria", Font.PLAIN, 16));
+    FontMetrics fontMetrics = g.getFontMetrics();
+    Rectangle2D bounds = fontMetrics.getStringBounds(word, g);
+    int x = (int) ((outer.width - bounds.getWidth()) / 2);
+    int y = (int) ((outer.height - bounds.getHeight()) / 2) + fontMetrics.getAscent();
     g.setColor(Color.WHITE);
-    g.drawString(word, xPosition, yPosition);
+    g.drawString(word, xPosition + x, yPosition + y);
     g.setColor(Color.RED);
-    g.drawString(getCompleted(), xPosition, yPosition);
+    g.drawString(getCompleted(), xPosition + x, yPosition + y);
   }
   public String getCompleted()
   {
@@ -56,6 +91,7 @@ public class Shark
     {
       setState(PlayState.Killing);
     }
+    frames++;
   }
   public void processLetter(char letter)
   {
