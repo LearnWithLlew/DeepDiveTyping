@@ -18,6 +18,7 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
 {
   public JPanel           view   = new DeepDiveTypingView(this);
   public ArrayList<Shark> actors = new ArrayList<Shark>();
+  private Timer           timer;
   private void launchWindow()
   {
     startGame();
@@ -46,7 +47,8 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
         view.repaint();
       }
     };
-    new Timer(delay, taskPerformer).start();
+    timer = new Timer(delay, taskPerformer);
+    timer.start();
   }
   protected void advanceClock()
   {
@@ -74,12 +76,12 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   @Override
   public void keyPressed(KeyEvent e)
   {
-    processLetter(e.getKeyChar());
+    //processLetter(e.getKeyChar());
   }
   @Override
   public void keyReleased(KeyEvent e)
   {
-    processLetter(e.getKeyChar());
+    //processLetter(e.getKeyChar());
   }
   @Override
   public void playStateChanged(Shark shark)
@@ -91,6 +93,8 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
         addShark();
         actors.remove(shark);
         break;
+      case Killing :
+        timer.stop();
       default :
         break;
     }
