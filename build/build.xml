@@ -1,0 +1,46 @@
+<project name="Deep Dive Typing" basedir="." default="Publish    DeepDive Typing">
+	<target name="compile" depends="cleanUp">
+		<mkdir dir="${build}" />
+		<delete dir="${build}/com/spun" />
+		<echo>${targetJavaClass}</echo>
+		<javac srcdir="${src}" destdir="${build}" debug="true" includes="${targetJavaClass}" target="1.6" source="1.6" listfiles="true">
+			<exclude name="**/tests/**" if="excludeTests" />
+
+			<classpath>
+				<fileset dir="${src}/jars">
+					<include name="**/*.jar" />
+				</fileset>
+				
+			</classpath>
+		</javac>
+	</target>
+	<target name="cleanUp">
+		<delete dir="${build}" />
+	</target>
+
+	
+
+	<target name="Publish    DeepDive Typing">
+		<property file="properties/deep_dive_typing.properties" />
+		<antcall target="buildExecutableJarFile" />
+
+	</target>
+	<target name="buildExecutableJarFile" depends="compile">
+		<copy todir="${build}">
+			<fileset dir="${src}" includes="${targetJavaClass}/*.png" />
+		</copy>
+		<copy todir="${build}">
+			<fileset dir="${src}" includes="${targetJavaClass}/*.txt" />
+		</copy>
+		<delete file="${jar}" failonerror="false" />
+		<jar destfile="${jar}/DeepDiveTyping.jar" update="false">
+			<fileset dir="${build}" includes="**" />
+			 <zipfileset src="${src}/jars/ApprovalTests.jar" includes="**/*.java **/*.class"/>
+			<manifest>
+				<attribute name="Main-Class" value="org.teachingkidsprogramming.typingdeepdive.DeepDiveTypingGame" />
+			</manifest>
+		</jar>
+	</target>
+
+</project>
+
