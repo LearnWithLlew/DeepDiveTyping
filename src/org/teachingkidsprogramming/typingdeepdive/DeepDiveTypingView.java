@@ -21,7 +21,7 @@ public class DeepDiveTypingView extends JPanel
   public void paint(Graphics g)
   {
     super.paint(g);
-    for (Shark shark : deepDive.actors)
+    for (Actor shark : deepDive.actors)
     {
       shark.paint(g, getSize());
     }

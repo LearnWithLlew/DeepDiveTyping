@@ -11,15 +11,14 @@ import javax.swing.Timer;
 
 import org.teachingkidsprogramming.typingdeepdive.Shark.PlayState;
 
-import com.spun.util.NumberUtils;
 import com.spun.util.WindowUtils;
 
 public class DeepDiveTypingGame implements KeyListener, PlayStateListener
 {
   public JPanel           view   = new DeepDiveTypingView(this);
-  public ArrayList<Shark> actors = new ArrayList<Shark>();
+  public ArrayList<Actor> actors = new ArrayList<Actor>();
   private Timer           timer;
-  private Shark           selected;
+  private Actor           selected;
   private void launchWindow()
   {
     startGame();
@@ -27,17 +26,8 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   }
   private void startGame()
   {
-    for (int i = 1; i <= 5; i++)
-    {
-      addShark();
-    }
+    actors.add(new SharkBatch(this));
     startClock();
-  }
-  public void addShark()
-  {
-    Shark shark = new Shark(Words.next(), NumberUtils.getRandomInt(100, 900));
-    shark.addListener(this);
-    actors.add(shark);
   }
   private void startClock()
   {
@@ -56,7 +46,7 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   }
   protected void advanceClock()
   {
-    for (Shark shark : actors)
+    for (Actor shark : actors.toArray(new Actor[0]))
     {
       shark.advanceClock();
     }
@@ -71,7 +61,7 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
     {
       selected.processLetter(letter);
     }
-    for (Shark shark : actors)
+    for (Actor shark : actors)
     {
       if (selected == null)
       {
@@ -87,12 +77,12 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   @Override
   public void keyPressed(KeyEvent e)
   {
-    //processLetter(e.getKeyChar());
+    //do nothing
   }
   @Override
   public void keyReleased(KeyEvent e)
   {
-    //processLetter(e.getKeyChar());
+    //do nothing
   }
   @Override
   public void playStateChanged(Shark shark)
@@ -101,9 +91,7 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
     switch (state)
     {
       case Killed :
-        addShark();
-        actors.remove(shark);
-        selected = null;
+        removeShark(shark);
         break;
       case Killing :
         timer.stop();
@@ -113,6 +101,15 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
         break;
       default :
         break;
+    }
+  }
+  public void removeShark(Shark shark)
+  {
+    actors.remove(shark);
+    selected = null;
+    if (actors.isEmpty())
+    {
+      actors.add(new SharkBatch(this));
     }
   }
 }

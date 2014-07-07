@@ -19,9 +19,6 @@ public class Words
     if (words == null)
     {
       words = FileUtils.readFromClassPath(Words.class, "words.txt").split("\n");
-      //    words = new String[]{
-      //        "Samantha", "Lynn", "Llewellyn", "Jessica", "Brick", "teaching", "kids", "programming", "xenophobe",
-      //        "quintessence"};
     }
     return words;
   }

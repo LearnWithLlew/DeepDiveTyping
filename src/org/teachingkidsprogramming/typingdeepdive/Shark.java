@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 
 import com.spun.util.ArrayUtils;
 
-public class Shark
+public class Shark implements Actor
 {
   public enum PlayState {
     Active, Selected, Killed, Killing
@@ -41,7 +41,7 @@ public class Shark
   }
   public void paint(Graphics g, Dimension box)
   {
-    int startX = box.width - outer.width;
+    int startX = box.width;
     int length = startX - diver;
     double xScale = length / 1000.0;
     double yScale = box.getHeight() / 1000.0;
