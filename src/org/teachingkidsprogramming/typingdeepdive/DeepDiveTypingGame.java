@@ -110,9 +110,25 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   {
     actors.remove(shark);
     selected = null;
-    if (actors.isEmpty())
+    if (isEmpty())
     {
       actors.add(new SharkBatch(this));
+    }
+  }
+  private boolean isEmpty()
+  {
+    return actors.isEmpty() || (actors.size() == 1 && actors.get(0) instanceof Diver);
+  }
+  public void addDiver()
+  {
+    boolean contains = false;
+    for (Actor a : actors)
+    {
+      contains |= a instanceof Diver;
+    }
+    if (!contains)
+    {
+      actors.add(new Diver());
     }
   }
 }

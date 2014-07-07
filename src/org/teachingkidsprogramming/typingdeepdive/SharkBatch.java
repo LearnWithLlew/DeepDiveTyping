@@ -16,13 +16,14 @@ public class SharkBatch implements Actor
   {
     this.game = game;
     addSharks(6);
+    game.addDiver();
   }
   private void addSharks(int number)
   {
-    int spacing = 800 / number;
+    int spacing = (900 - 50) / number;
     for (int i = 0; i < number; i++)
     {
-      int y = 100 + (spacing * i) + NumberUtils.getRandomInt(-50, 50);
+      int y = 50 + (spacing * i) + NumberUtils.getRandomInt(-50, 50);
       Shark shark = new Shark(Words.next(), y);
       add(NumberUtils.getRandomInt(1, 75), shark);
     }

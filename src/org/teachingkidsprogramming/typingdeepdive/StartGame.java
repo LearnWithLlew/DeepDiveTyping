@@ -12,7 +12,12 @@ public class StartGame implements Actor
   public StartGame(DeepDiveTypingGame game)
   {
     this.game = game;
+    preloadImages();
+  }
+  public void preloadImages()
+  {
     Shark.loadImage();
+    Diver.loadImage();
   }
   @Override
   public void advanceClock()
