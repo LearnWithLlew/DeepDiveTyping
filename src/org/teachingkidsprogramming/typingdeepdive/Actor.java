@@ -6,6 +6,6 @@ import java.awt.Graphics;
 public interface Actor
 {
   void advanceClock();
-  void processLetter(char letter);
+  boolean processLetter(char letter);
   void paint(Graphics g, Dimension size);
 }

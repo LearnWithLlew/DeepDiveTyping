@@ -93,9 +93,9 @@ public class Shark implements Actor
     }
     frames++;
   }
-  public void processLetter(char letter)
+  public boolean processLetter(char letter)
   {
-    if (isFinished()) { return; }
+    if (isFinished()) { return false; }
     char currentLetter = word.charAt(typed);
     if (currentLetter == letter)
     {
@@ -105,7 +105,9 @@ public class Shark implements Actor
       {
         setState(PlayState.Killed);
       }
+      return true;
     }
+    return false;
   }
   public boolean isFinished()
   {

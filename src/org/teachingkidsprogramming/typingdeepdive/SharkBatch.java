@@ -54,8 +54,9 @@ public class SharkBatch implements Actor
     }
   }
   @Override
-  public void processLetter(char letter)
+  public boolean processLetter(char letter)
   {
+    return false;
   }
   @Override
   public void paint(Graphics g, Dimension size)
