@@ -1,6 +1,7 @@
 package org.teachingkidsprogramming.typingdeepdive.tests;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -74,6 +75,6 @@ class SharkView extends JPanel
   public void paint(Graphics g)
   {
     super.paint(g);
-    shark.paint(g, getSize());
+    shark.paint(g, new Dimension(0, getSize().height));
   }
 }

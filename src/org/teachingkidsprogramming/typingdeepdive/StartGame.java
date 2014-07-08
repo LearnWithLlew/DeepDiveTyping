@@ -28,7 +28,7 @@ public class StartGame implements Actor
   {
     if (letter == 's')
     {
-      game.remove(this);
+      game.start();
       return true;
     }
     return false;

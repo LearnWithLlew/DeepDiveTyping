@@ -69,11 +69,13 @@ public class Shark implements Actor
   }
   public void drawText(Graphics g, int xPosition, int yPosition)
   {
-    g.setFont(new Font("Cambria", Font.PLAIN, 16));
+    g.setFont(new Font("Cambria", Font.BOLD, 16));
     FontMetrics fontMetrics = g.getFontMetrics();
     Rectangle2D bounds = fontMetrics.getStringBounds(word, g);
-    int x = (int) ((outer.width - bounds.getWidth()) / 2);
-    int y = (int) ((outer.height - bounds.getHeight()) / 2) + fontMetrics.getAscent();
+    int xOffset = 6;
+    int x = (int) ((outer.width - bounds.getWidth()) / 2) + xOffset;
+    int yOffset = -3;
+    int y = (int) ((outer.height - bounds.getHeight()) / 2) + fontMetrics.getAscent() + yOffset;
     g.setColor(Color.WHITE);
     g.drawString(word, xPosition + x, yPosition + y);
     g.setColor(Color.RED);

@@ -40,7 +40,7 @@ public class WordTest
     }
     writer.close();
   }
-  @Test
+  // @Test
   public void testWordsByLength() throws Exception
   {
     HashMap<Integer, ArrayList<String>> words = Words.getWords();

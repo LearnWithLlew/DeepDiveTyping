@@ -1,13 +1,12 @@
 package org.teachingkidsprogramming.typingdeepdive.tests;
 
 import org.approvaltests.Approvals;
-import org.junit.Test;
 import org.teachingkidsprogramming.typingdeepdive.DeepDiveTypingGame;
 import org.teachingkidsprogramming.typingdeepdive.Shark;
 
 public class DeepDiveTypingGameTest
 {
-  @Test
+  //@Test
   public void testStartingShark() throws Exception
   {
     Shark shark = new Shark("Samantha", 200);

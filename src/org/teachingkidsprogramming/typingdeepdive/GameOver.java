@@ -21,8 +21,7 @@ public class GameOver implements Actor
   {
     if (letter == 's')
     {
-      game.actors.clear();
-      game.remove(null);
+      game.start();
       game.timer.start();
       return true;
     }

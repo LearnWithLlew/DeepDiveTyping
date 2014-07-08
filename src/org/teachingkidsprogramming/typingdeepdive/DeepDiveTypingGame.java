@@ -17,14 +17,15 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
 {
   public JPanel           view   = new DeepDiveTypingView(this);
   public ArrayList<Actor> actors = new ArrayList<Actor>();
+  public Score            score;
   public Timer            timer;
   public Actor            selected;
   private void launchWindow()
   {
-    startGame();
+    showStartPanel();
     WindowUtils.testPanel(view);
   }
-  private void startGame()
+  private void showStartPanel()
   {
     actors.add(new StartGame(this));
     startClock();
@@ -60,15 +61,13 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
     if (selected != null)
     {
       selected.processLetter(letter);
+      return;
     }
     for (Actor shark : actors.toArray(new Actor[0]))
     {
       if (selected == null)
       {
-        if (shark.processLetter(letter))
-        {
-          break;
-        }
+        if (shark.processLetter(letter)) { return; }
       }
     }
   }
@@ -94,7 +93,7 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
     switch (state)
     {
       case Killed :
-        remove(shark);
+        removeShark(shark);
         break;
       case Killing :
         actors.add(new GameOver(this));
@@ -106,6 +105,11 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
         break;
     }
   }
+  public void removeShark(Shark shark)
+  {
+    score.scoreKill(shark);
+    remove(shark);
+  }
   public void remove(Actor shark)
   {
     actors.remove(shark);
@@ -113,6 +117,10 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
     if (isEmpty())
     {
       actors.add(new SharkBatch(this));
+    }
+    else
+    {
+      System.out.println(actors.toString());
     }
   }
   private boolean isEmpty()
@@ -130,5 +138,12 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
     {
       actors.add(new Diver());
     }
+  }
+  public void start()
+  {
+    score = new Score();
+    actors.clear();
+    actors.add(new SharkBatch(this));
+    actors.add(new Diver());
   }
 }
