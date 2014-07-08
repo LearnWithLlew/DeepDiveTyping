@@ -143,6 +143,7 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   {
     score = new Score();
     actors.clear();
+    selected = null;
     actors.add(new SharkBatch(this));
     actors.add(new Diver());
   }
