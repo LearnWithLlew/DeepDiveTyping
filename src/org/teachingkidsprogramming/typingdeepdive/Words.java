@@ -1,24 +1,68 @@
 package org.teachingkidsprogramming.typingdeepdive;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.lambda.functions.Function1;
+import org.lambda.query.Query;
+
 import com.spun.util.NumberUtils;
-import com.spun.util.io.FileUtils;
+import com.spun.util.ObjectUtils;
 
 public class Words
 {
-  private static String[] words;
-  /**
-   * @return
-   */
-  public static String next()
+  private static HashMap<Integer, ArrayList<String>> words;
+  public static String next(int min, int max)
   {
-    String[] words = getWords();
-    return words[NumberUtils.getRandomInt(0, words.length)];
+    HashMap<Integer, ArrayList<String>> words = getWords();
+    ArrayList<ArrayList<String>> possible = new ArrayList<ArrayList<String>>();
+    for (Integer key : words.keySet())
+    {
+      if (min <= key && key <= max)
+      {
+        possible.add(words.get(key));
+      }
+    }
+    Function1<ArrayList<String>, Integer> added = new Function1<ArrayList<String>, Integer>()
+    {
+      public Integer call(ArrayList<String> i)
+      {
+        return i.size();
+      }
+    };
+    int total = Query.sum(possible, added).intValue();
+    int index = NumberUtils.getRandomInt(0, total);
+    for (ArrayList<String> w : words.values())
+    {
+      if (index < w.size()) { return w.get(index); }
+      index -= w.size();
+    }
+    return null;
   }
-  public static String[] getWords()
+  public static HashMap<Integer, ArrayList<String>> getWords()
   {
     if (words == null)
     {
-      words = FileUtils.readFromClassPath(Words.class, "words.txt").split("\n");
+      words = new HashMap<Integer, ArrayList<String>>();
+      InputStream resourceAsStream = Words.class.getResourceAsStream("words.txt");
+      BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
+      try
+      {
+        while (reader.ready())
+        {
+          String word = reader.readLine().trim();
+          SharkBatch.add(words, word.length(), word);
+        }
+        reader.close();
+      }
+      catch (IOException e)
+      {
+        ObjectUtils.throwAsError(e);
+      }
     }
     return words;
   }

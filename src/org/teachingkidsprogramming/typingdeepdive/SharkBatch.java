@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import com.spun.util.NumberUtils;
 
@@ -15,26 +16,39 @@ public class SharkBatch implements Actor
   public SharkBatch(DeepDiveTypingGame game)
   {
     this.game = game;
-    addSharks(6);
-    game.addDiver();
+    this.game.score.scoreNewBatch();
+    addSharks(3 + game.score.getBatch());
   }
   private void addSharks(int number)
   {
     int spacing = (900 - 50) / number;
+    HashSet<Character> letters = new HashSet<Character>();
     for (int i = 0; i < number; i++)
     {
       int y = 50 + (spacing * i) + NumberUtils.getRandomInt(-50, 50);
-      Shark shark = new Shark(Words.next(), y);
-      add(NumberUtils.getRandomInt(1, 75), shark);
+      String word = getUniqueWord(letters);
+      Shark shark = new Shark(word, y);
+      add(sharks, NumberUtils.getRandomInt(1, 75), shark);
     }
   }
-  private void add(int frame, Shark shark)
+  public static String getUniqueWord(HashSet<Character> letters)
   {
-    if (!sharks.containsKey(frame))
+    String word;
+    do
     {
-      sharks.put(frame, new ArrayList<Shark>());
+      word = Words.next(2, 7);
     }
-    sharks.get(frame).add(shark);
+    while (letters.contains(word.charAt(0)));
+    letters.add(word.charAt(0));
+    return word;
+  }
+  public static <K, V> void add(HashMap<K, ArrayList<V>> map, K frame, V shark)
+  {
+    if (!map.containsKey(frame))
+    {
+      map.put(frame, new ArrayList<V>());
+    }
+    map.get(frame).add(shark);
   }
   @Override
   public void advanceClock()
