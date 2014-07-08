@@ -30,6 +30,9 @@
 			<fileset dir="${src}" includes="${targetJavaClass}/*.png" />
 		</copy>
 		<copy todir="${build}">
+			<fileset dir="${src}" includes="${targetJavaClass}/*.wav" />
+		</copy>
+		<copy todir="${build}">
 			<fileset dir="${src}" includes="${targetJavaClass}/*.txt" />
 		</copy>
 		<delete file="${jar}" failonerror="false" />

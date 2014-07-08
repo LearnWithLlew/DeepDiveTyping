@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -23,7 +24,13 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   private void launchWindow()
   {
     showStartPanel();
-    WindowUtils.testPanel(view);
+    OpenWindow(view);
+  }
+  private static void OpenWindow(JPanel view)
+  {
+    JFrame test = new JFrame("Deep Dive Typing");
+    test.getContentPane().add(view);
+    WindowUtils.testFrame(test, true);
   }
   private void showStartPanel()
   {
@@ -117,10 +124,6 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
     if (isEmpty())
     {
       actors.add(new SharkBatch(this));
-    }
-    else
-    {
-      System.out.println(actors.toString());
     }
   }
   private boolean isEmpty()

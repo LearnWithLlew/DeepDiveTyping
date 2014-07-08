@@ -9,6 +9,7 @@ public class GameOver implements Actor
   public GameOver(DeepDiveTypingGame game)
   {
     this.game = game;
+    Sounds.playPlayerDies();
     game.selected = this;
     game.timer.stop();
   }

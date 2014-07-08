@@ -18,6 +18,7 @@ public class SharkBatch implements Actor
     this.game = game;
     this.game.score.scoreNewBatch();
     addSharks(3 + game.score.getBatch());
+    Sounds.playDiveUnderwater();
   }
   private void addSharks(int number)
   {

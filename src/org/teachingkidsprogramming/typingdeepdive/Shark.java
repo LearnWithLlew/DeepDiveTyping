@@ -106,8 +106,13 @@ public class Shark implements Actor
       if (typed == word.length())
       {
         setState(PlayState.Killed);
+        Sounds.playSharkDies();
       }
       return true;
+    }
+    if (0 < typed)
+    {
+      Sounds.playWrongLetter();
     }
     return false;
   }
