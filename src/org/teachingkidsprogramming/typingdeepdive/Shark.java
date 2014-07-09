@@ -76,10 +76,14 @@ public class Shark implements Actor
     int x = (int) ((outer.width - bounds.getWidth()) / 2) + xOffset;
     int yOffset = -3;
     int y = (int) ((outer.height - bounds.getHeight()) / 2) + fontMetrics.getAscent() + yOffset;
+    int xFinal = xPosition + x;
+    int yFinal = yPosition + y;
+    g.setColor(Color.black);
+    g.drawString(word, xFinal + 1, yFinal + 2);
     g.setColor(Color.WHITE);
-    g.drawString(word, xPosition + x, yPosition + y);
+    g.drawString(word, xFinal, yFinal);
     g.setColor(Color.RED);
-    g.drawString(getCompleted(), xPosition + x, yPosition + y);
+    g.drawString(getCompleted(), xFinal, yFinal);
   }
   public String getCompleted()
   {
