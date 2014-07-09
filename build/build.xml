@@ -27,13 +27,7 @@
 	</target>
 	<target name="buildExecutableJarFile" depends="compile">
 		<copy todir="${build}">
-			<fileset dir="${src}" includes="${targetJavaClass}/*.png" />
-		</copy>
-		<copy todir="${build}">
-			<fileset dir="${src}" includes="${targetJavaClass}/*.wav" />
-		</copy>
-		<copy todir="${build}">
-			<fileset dir="${src}" includes="${targetJavaClass}/*.txt" />
+				<fileset dir="${src}" includes="${targetJavaClass}/**" />
 		</copy>
 		<delete file="${jar}" failonerror="false" />
 		<jar destfile="${jar}/DeepDiveTyping.jar" update="false">
