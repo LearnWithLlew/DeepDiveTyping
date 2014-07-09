@@ -4,13 +4,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class DeepDiveTypingView extends JPanel
 {
+  private static Image       image;
   private DeepDiveTypingGame deepDive;
   public DeepDiveTypingView(DeepDiveTypingGame deepDive)
   {
@@ -24,22 +27,38 @@ public class DeepDiveTypingView extends JPanel
   public void paint(Graphics g)
   {
     super.paint(g);
+    paintBackground(g);
     paintScores(g);
     for (Actor shark : deepDive.actors)
     {
       shark.paint(g, getSize());
     }
   }
+  private void paintBackground(Graphics g)
+  {
+    g.drawImage(loadImage(), 0, 0, getSize().width, getSize().height, null);
+  }
+  public static Image loadImage()
+  {
+    if (image == null)
+    {
+      image = new ImageIcon(Diver.class.getResource("water.gif")).getImage();
+    }
+    return image;
+  }
   private void paintScores(Graphics g)
   {
     if (deepDive.score == null) { return; }
-    String text = "Sharks Killed: " + deepDive.score.getSharks();
     g.setColor(Color.white);
     g.setFont(new Font(Font.SERIF, Font.BOLD, 18));
+    Point bottomRight = new Point(getSize().width - 6, getSize().height - 6);
+    printText(g, bottomRight, "Sharks Killed: " + deepDive.score.getSharks());
+    printText(g, bottomRight, "Round: " + deepDive.score.getBatch());
+  }
+  public void printText(Graphics g, Point bottomRight, String text)
+  {
     Rectangle2D bounds = g.getFontMetrics().getStringBounds(text, g);
-    Point border = new Point(6, 6);
-    int x = (int) (getSize().width - bounds.getWidth()) - border.x;
-    int y = (int) (getSize().height - bounds.getMaxY()) - border.y;
-    g.drawString(text, x, y);
+    bottomRight.y -= bounds.getHeight();
+    g.drawString(text, (int) (bottomRight.x - bounds.getWidth()), (int) (bottomRight.y - bounds.getMaxY()));
   }
 }

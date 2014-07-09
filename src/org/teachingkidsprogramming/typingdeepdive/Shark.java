@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import com.spun.util.ArrayUtils;
+import com.spun.util.Colors;
 
 public class Shark implements Actor
 {
@@ -79,10 +80,10 @@ public class Shark implements Actor
     int xFinal = xPosition + x;
     int yFinal = yPosition + y;
     g.setColor(Color.black);
-    g.drawString(word, xFinal + 1, yFinal + 2);
+    g.drawString(word, xFinal + 1, yFinal + 1);
     g.setColor(Color.WHITE);
     g.drawString(word, xFinal, yFinal);
-    g.setColor(Color.RED);
+    g.setColor(Colors.Reds.FireBrick);
     g.drawString(getCompleted(), xFinal, yFinal);
   }
   public String getCompleted()

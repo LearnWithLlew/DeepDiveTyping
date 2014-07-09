@@ -57,7 +57,7 @@ public class SharkTest
   public void testSharkDesign() throws Exception
   {
     Shark shark = new Shark("legitimate", 0);
-    //shark.advanceClock();
+    processLetters("legi", shark);
     Approvals.verify(new SharkView(shark));
   }
 }

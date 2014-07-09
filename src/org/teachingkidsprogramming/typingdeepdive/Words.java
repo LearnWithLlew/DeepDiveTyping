@@ -48,22 +48,27 @@ public class Words
     if (words == null)
     {
       words = new HashMap<Integer, ArrayList<String>>();
-      InputStream resourceAsStream = Words.class.getResourceAsStream("words.txt");
-      BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
-      try
-      {
-        while (reader.ready())
-        {
-          String word = reader.readLine().trim();
-          SharkBatch.add(words, word.length(), word);
-        }
-        reader.close();
-      }
-      catch (IOException e)
-      {
-        ObjectUtils.throwAsError(e);
-      }
+      importWords("words/words.txt");
+      importWords("words/fun_words.txt");
     }
     return words;
+  }
+  public static void importWords(String filename) throws Error
+  {
+    InputStream resourceAsStream = Words.class.getResourceAsStream(filename);
+    BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
+    try
+    {
+      while (reader.ready())
+      {
+        String word = reader.readLine().trim();
+        SharkBatch.add(words, word.length(), word);
+      }
+      reader.close();
+    }
+    catch (IOException e)
+    {
+      ObjectUtils.throwAsError(e);
+    }
   }
 }

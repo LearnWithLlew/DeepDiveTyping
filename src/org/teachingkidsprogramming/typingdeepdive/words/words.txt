@@ -907,8 +907,6 @@ blood
 bloody
 bloom
 bloomberg
-blow
-blowing
 blue
 blues
 bluetooth
@@ -920,7 +918,6 @@ boating
 boats
 bob
 bobby
-boc
 bodies
 body
 bold
@@ -929,13 +926,10 @@ bolt
 bomb
 bon
 bond
-bondage
 bonds
 bone
 bones
 bonus
-boob
-boobs
 book
 booking
 bookings
@@ -2392,7 +2386,6 @@ diana
 diane
 diary
 dice
-dicke
 dictionaries
 dictionary
 did
@@ -2418,8 +2411,6 @@ dig
 digest
 digit
 digital
-dildo
-dildos
 dim
 dimension
 dimensional
@@ -3810,8 +3801,6 @@ handbook
 handed
 handheld
 handhelds
-handjob
-handjobs
 handle
 handled
 handles
@@ -4537,7 +4526,6 @@ join
 joined
 joining
 joins
-joint
 joke
 jokes
 jon
@@ -4585,7 +4573,6 @@ justice
 justify
 justin
 juvenile
-jvc
 kai
 kansas
 karaoke
@@ -4603,15 +4590,6 @@ keen
 keep
 keeping
 keeps
-keith
-kelkoo
-kelly
-ken
-kennedy
-kenneth
-kenny
-keno
-kent
 kentucky
 kenya
 kept
@@ -4628,14 +4606,12 @@ kick
 kid
 kidney
 kids
-kijiji
 kill
 killed
 killer
 kills
 kilometers
 kim
-kinase
 kind
 kinda
 kinds
@@ -4888,7 +4864,6 @@ line
 linear
 lined
 lines
-lingerie
 link
 linked
 linking
@@ -4926,7 +4901,6 @@ lives
 livestock
 living
 liz
-llc
 lloyd
 llp
 load
@@ -5171,8 +5145,6 @@ massive
 master
 mastercard
 masters
-masturbating
-masturbation
 mat
 match
 matched
@@ -5561,8 +5533,6 @@ mystery
 myth
 nail
 nails
-naked
-nam
 name
 named
 namely
@@ -5592,7 +5562,6 @@ natural
 naturally
 naturals
 nature
-naughty
 nav
 naval
 navigate
@@ -5673,7 +5642,6 @@ nick
 nickel
 nickname
 nicole
-niger
 nigeria
 night
 nightlife
@@ -5684,8 +5652,6 @@ nikon
 nil
 nine
 nintendo
-nipple
-nipples
 nirvana
 nissan
 nitrogen
@@ -5920,8 +5886,6 @@ organize
 organized
 organizer
 organizing
-orgasm
-orgy
 oriental
 orientation
 oriented
@@ -6119,21 +6083,13 @@ payments
 paypal
 payroll
 pays
-pci
-pcs
-pct
-pda
-pdas
 pdf
-pdt
 peace
 peaceful
 peak
 pearl
 peas
 pediatric
-pee
-peeing
 peer
 peers
 pen
@@ -6210,7 +6166,6 @@ petite
 petition
 petroleum
 pets
-pgp
 phantom
 pharmaceutical
 pharmaceuticals
@@ -6287,8 +6242,6 @@ pipe
 pipeline
 pipes
 pirates
-piss
-pissing
 pit
 pitch
 pittsburgh
@@ -6689,9 +6642,6 @@ provision
 provisions
 proxy
 prozac
-psi
-psp
-pst
 psychiatry
 psychological
 psychology
@@ -6708,7 +6658,6 @@ published
 publisher
 publishers
 publishing
-pubmed
 pubs
 puerto
 pull
@@ -8960,7 +8909,6 @@ vacation
 vacations
 vaccine
 vacuum
-vagina
 val
 valentine
 valid
@@ -9455,7 +9403,6 @@ zero
 zimbabwe
 zinc
 zip
-zoloft
 zone
 zones
 zoning
