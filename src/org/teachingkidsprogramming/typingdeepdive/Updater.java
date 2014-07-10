@@ -6,13 +6,9 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
-import org.teachingkidsprogramming.typingdeepdive.tests.UpdateUtils;
-
-import com.spun.util.ObjectUtils;
-
 public class Updater
 {
-  private static final String DROPBOX_URL = "https://dl.dropboxusercontent.com/u/21445495/DeepDiveTyping.jar";
+  private static final String DROPBOX_URL = "https://dl.dropboxusercontent.com/u/21445495/DeepDiveTyping.Latest.jar";
   public static void main(String[] args) throws Exception
   {
     start();
@@ -20,11 +16,7 @@ public class Updater
   private static void start() throws Exception
   {
     File file = new File(".DeepDiveTyping.jar");
-    if (UpdateUtils.isFileDifferent(file, DROPBOX_URL))
-    {
-      downloadFile(file);
-      System.out.println("downloaded");
-    }
+    downloadFileIfNeeded(file);
     launchFile(file);
     System.out.println("done");
   }
@@ -32,14 +24,30 @@ public class Updater
   {
     launch("java -jar %s", file.getAbsolutePath());
   }
-  private static void downloadFile(File jar) throws Exception
+  private static void downloadFileIfNeeded(File jar)
   {
-    URL website = new URL(DROPBOX_URL);
-    ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-    FileOutputStream fos = new FileOutputStream(jar, false);
-    fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-    fos.close();
-    launch("attrib +H %s", jar.getAbsolutePath());
+    try
+    {
+      if (UpdateUtils.isFileIdentical(jar, DROPBOX_URL)) { return; }
+      URL website = new URL(DROPBOX_URL);
+      ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+      FileOutputStream fos = new FileOutputStream(jar, false);
+      fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+      fos.close();
+      if (isWindowsEnviroment())
+      {
+        launch("attrib +H %s", jar.getAbsolutePath());
+      }
+      System.out.println("downloaded");
+    }
+    catch (Exception e)
+    {
+      System.out.println(e);//ignore download issues to play offline
+    }
+  }
+  public static boolean isWindowsEnviroment()
+  {
+    return "\\".equals(File.separator);
   }
   public static void launch(String commandLine, String... formattingArguments)
   {
@@ -53,7 +61,7 @@ public class Updater
     }
     catch (Exception e)
     {
-      ObjectUtils.throwAsError(e);
+      throw new RuntimeException(e);
     }
   }
 }

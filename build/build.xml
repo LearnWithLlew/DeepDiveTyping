@@ -7,10 +7,9 @@
 			<exclude name="**/tests/**" if="excludeTests" />
 
 			<classpath>
-				<fileset dir="${src}/jars">
+				<fileset dir="${jars}">
 					<include name="**/*.jar" />
 				</fileset>
-				
 			</classpath>
 		</javac>
 	</target>
@@ -25,16 +24,21 @@
 		<antcall target="buildExecutableJarFile" />
 
 	</target>
+	<target name="Publish    DeepDive Typing Launcher">
+			<property file="properties/deep_dive_typing_launcher.properties" />
+			<antcall target="buildExecutableJarFile" />
+
+		</target>
 	<target name="buildExecutableJarFile" depends="compile">
 		<copy todir="${build}">
-				<fileset dir="${src}" includes="${targetJavaClass}/**" />
+				<fileset dir="${src}" includes="org/**" />
 		</copy>
 		<delete file="${jar}" failonerror="false" />
-		<jar destfile="${jar}/DeepDiveTyping.jar" update="false">
+		<jar destfile="${jarFile}" update="false">
 			<fileset dir="${build}" includes="**" />
-			 <zipfileset src="${src}/jars/ApprovalTests.jar" includes="**/*.java **/*.class"/>
+		 <!--zipfileset src="${jars}/ApprovalTests.jar" includes="**/*.java **/*.class" /-->
 			<manifest>
-				<attribute name="Main-Class" value="org.teachingkidsprogramming.typingdeepdive.DeepDiveTypingGame" />
+				<attribute name="Main-Class" value="${executableMainClass}" />
 			</manifest>
 		</jar>
 	</target>
