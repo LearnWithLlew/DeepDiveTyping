@@ -30,13 +30,14 @@
 
 		</target>
 	<target name="buildExecutableJarFile" depends="compile">
+		<!-- comment out the resource copy & the zipfileset to build launcher. Also fix this later-->
 		<copy todir="${build}">
 				<fileset dir="${src}" includes="org/**" />
 		</copy>
 		<delete file="${jar}" failonerror="false" />
 		<jar destfile="${jarFile}" update="false">
 			<fileset dir="${build}" includes="**" />
-		 <!--zipfileset src="${jars}/ApprovalTests.jar" includes="**/*.java **/*.class" /-->
+		 <zipfileset src="${jars}/ApprovalTests.jar" includes="**/*.java **/*.class" />
 			<manifest>
 				<attribute name="Main-Class" value="${executableMainClass}" />
 			</manifest>
