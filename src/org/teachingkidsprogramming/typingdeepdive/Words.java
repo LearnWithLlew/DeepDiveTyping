@@ -50,6 +50,7 @@ public class Words
       words = new HashMap<Integer, ArrayList<String>>();
       importWords("words/words.txt");
       importWords("words/fun_words.txt");
+      importWords("words/punctuation.txt");
     }
     return words;
   }

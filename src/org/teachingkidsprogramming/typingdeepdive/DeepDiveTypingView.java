@@ -42,7 +42,7 @@ public class DeepDiveTypingView extends JPanel
   {
     if (image == null)
     {
-      image = new ImageIcon(Diver.class.getResource("water.gif")).getImage();
+      image = new ImageIcon(Diver.class.getResource("water.jpg")).getImage();
     }
     return image;
   }
