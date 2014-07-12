@@ -52,7 +52,7 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
     timer = new Timer(delay, taskPerformer);
     timer.start();
   }
-  protected void advanceClock()
+  public void advanceClock()
   {
     for (Actor shark : actors.toArray(new Actor[0]))
     {
@@ -63,7 +63,7 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   {
     new DeepDiveTypingGame().launchWindow();
   }
-  private void processLetter(char letter)
+  public void processLetter(char letter)
   {
     if (selected != null)
     {

@@ -81,6 +81,8 @@ public class Shark implements Actor
     int yFinal = yPosition + y;
     g.setColor(Color.black);
     g.drawString(word, xFinal + 1, yFinal + 1);
+    g.setColor(Colors.Grays.Gray);
+    g.drawString(word, xFinal - 1, yFinal - 1);
     g.setColor(Color.WHITE);
     g.drawString(word, xFinal, yFinal);
     g.setColor(Colors.Reds.FireBrick);
@@ -149,5 +151,9 @@ public class Shark implements Actor
         l.playStateChanged(this);
       }
     }
+  }
+  public boolean isSelected()
+  {
+    return state == PlayState.Selected;
   }
 }

@@ -33,6 +33,13 @@ public class DeepDiveTypingView extends JPanel
     {
       shark.paint(g, getSize());
     }
+    for (Actor actor : deepDive.actors)
+    {
+      if (actor instanceof Shark && ((Shark) actor).isSelected())
+      {
+        ((Shark) actor).paint(g, getSize());
+      }
+    }
   }
   private void paintBackground(Graphics g)
   {

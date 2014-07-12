@@ -12,6 +12,7 @@ import org.lambda.query.Query;
 
 import com.spun.util.NumberUtils;
 import com.spun.util.ObjectUtils;
+import com.spun.util.StringUtils;
 
 public class Words
 {
@@ -63,7 +64,10 @@ public class Words
       while (reader.ready())
       {
         String word = reader.readLine().trim();
-        SharkBatch.add(words, word.length(), word);
+        if (!StringUtils.isEmpty(word))
+        {
+          SharkBatch.add(words, word.length(), word);
+        }
       }
       reader.close();
     }
