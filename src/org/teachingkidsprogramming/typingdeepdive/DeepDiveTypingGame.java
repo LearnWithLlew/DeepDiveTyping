@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -11,8 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import org.teachingkidsprogramming.typingdeepdive.Shark.PlayState;
+import org.teachingkidsprogramming.typingdeepdive.analytics.GameAnalytics;
 
+import com.spun.util.MySystem;
 import com.spun.util.WindowUtils;
+import com.spun.util.io.FileUtils;
 
 public class DeepDiveTypingGame implements KeyListener, PlayStateListener
 {
@@ -21,6 +26,7 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   public Score            score;
   public Timer            timer;
   public Actor            selected;
+  public GameAnalytics    analytics;
   private void launchWindow()
   {
     showStartPanel();
@@ -144,10 +150,29 @@ public class DeepDiveTypingGame implements KeyListener, PlayStateListener
   }
   public void start()
   {
+    analytics = new GameAnalytics();
     score = new Score();
     actors.clear();
     selected = null;
     actors.add(new SharkBatch(this));
     actors.add(new Diver());
+  }
+  public void writeAnalytics()
+  {
+    try
+    {
+      FileUtils.writeFile(new File(".analytics.json"), "game:" + analytics);
+    }
+    catch (IOException e)
+    {
+      MySystem.warning(e);
+    }
+  }
+  public void stopTimer()
+  {
+    if (timer != null)
+    {
+      timer.stop();
+    }
   }
 }

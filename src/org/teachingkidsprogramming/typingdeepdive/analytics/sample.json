@@ -1,0 +1,50 @@
+{
+	game:{
+		startTime:00:00:00,
+		rounds:[
+			{
+				startTime:00:00:00,
+				endTime:00:00:00,
+				number:1,
+				words:[
+					"via",
+					"booth",
+					"lbs",
+					"toner"
+				],
+				sharks:[
+					{
+						type:mistake,
+						key:a,
+						time:0
+					}
+					
+				],
+				
+			}
+			
+		],
+		gameover:{
+			time:00:00:00,
+			remaining:[
+				{
+					type:shark,
+					word:via,
+					keystyped:[
+						{
+							time:00:00:00,
+							key:v,
+							position:0,
+							correct:true
+						}
+						
+					]
+					
+				}
+				
+			]
+			
+		}
+		
+	}
+}

@@ -3,6 +3,8 @@ package org.teachingkidsprogramming.typingdeepdive;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+import org.teachingkidsprogramming.typingdeepdive.analytics.GameOverAnalytics;
+
 public class GameOver implements Actor
 {
   private DeepDiveTypingGame game;
@@ -11,7 +13,13 @@ public class GameOver implements Actor
     this.game = game;
     Sounds.playPlayerDies();
     game.selected = this;
-    game.timer.stop();
+    game.stopTimer();
+    doAnalytics(game);
+  }
+  public void doAnalytics(DeepDiveTypingGame game)
+  {
+    game.analytics.gameOver = new GameOverAnalytics();
+    game.writeAnalytics();
   }
   @Override
   public void advanceClock()

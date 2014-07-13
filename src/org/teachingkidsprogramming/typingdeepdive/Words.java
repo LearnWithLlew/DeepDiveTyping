@@ -17,7 +17,7 @@ import com.spun.util.StringUtils;
 public class Words
 {
   private static HashMap<Integer, ArrayList<String>> words;
-  public static String next(int min, int max)
+  public String next(int min, int max)
   {
     HashMap<Integer, ArrayList<String>> words = getWords();
     ArrayList<ArrayList<String>> possible = new ArrayList<ArrayList<String>>();

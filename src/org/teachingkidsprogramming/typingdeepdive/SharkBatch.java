@@ -10,6 +10,7 @@ import com.spun.util.NumberUtils;
 
 public class SharkBatch implements Actor
 {
+  public static Words                        words  = new Words();
   private DeepDiveTypingGame                 game;
   private HashMap<Integer, ArrayList<Shark>> sharks = new HashMap<Integer, ArrayList<Shark>>();
   private int                                frames;
@@ -37,7 +38,7 @@ public class SharkBatch implements Actor
     String word;
     do
     {
-      word = Words.next(2, 7);
+      word = words.next(2, 7);
     }
     while (letters.contains(word.charAt(0)));
     letters.add(word.charAt(0));
