@@ -1574,8 +1574,6 @@ coastal
 coat
 coated
 coating
-cock
-cocks
 cocktail
 cod
 code
@@ -2174,8 +2172,6 @@ dealt
 dealtime
 dean
 dear
-death
-deaths
 debate
 debian
 deborah
@@ -2892,14 +2888,10 @@ era
 eric
 ericsson
 erik
-erotic
-erotica
-erp
 error
 errors
 escape
 escort
-escorts
 especially
 espn
 essay
@@ -3152,7 +3144,6 @@ fatal
 fate
 father
 fathers
-fatty
 fault
 favor
 favorite
@@ -3757,7 +3748,6 @@ guitar
 guitars
 gulf
 gun
-guns
 guru
 guy
 guyana
@@ -4002,7 +3992,6 @@ horizon
 horizontal
 hormone
 horn
-horny
 horrible
 horror
 horse
@@ -5143,7 +5132,6 @@ maternity
 math
 mathematical
 mathematics
-mating
 matrix
 mats
 matt
@@ -8110,9 +8098,6 @@ success
 successful
 successfully
 such
-suck
-sucking
-sucks
 sudan
 sudden
 suddenly
