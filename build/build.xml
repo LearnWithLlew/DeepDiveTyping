@@ -17,27 +17,23 @@
 		<delete dir="${build}" />
 	</target>
 
-	
-
 	<target name="Publish    DeepDive Typing">
 		<property file="properties/deep_dive_typing.properties" />
 		<antcall target="buildExecutableJarFile" />
-
 	</target>
 	<target name="Publish    DeepDive Typing Launcher">
-			<property file="properties/deep_dive_typing_launcher.properties" />
-			<antcall target="buildExecutableJarFile" />
-
-		</target>
+		<property file="properties/deep_dive_typing_launcher.properties" />
+		<antcall target="buildExecutableJarFile" />
+	</target>
 	<target name="buildExecutableJarFile" depends="compile">
 		<!-- comment out the resource copy & the zipfileset to build launcher. Also fix this later-->
 		<copy todir="${build}">
-				<fileset dir="${src}" includes="org/**" />
+			<fileset dir="${src}" includes="org/**" />
 		</copy>
 		<delete file="${jar}" failonerror="false" />
 		<jar destfile="${jarFile}" update="false">
 			<fileset dir="${build}" includes="**" />
-		 <zipfileset src="${jars}/ApprovalTests.jar" includes="**/*.java **/*.class" />
+			<zipfileset src="${jars}/ApprovalTests.jar" includes="**/*.java **/*.class" />
 			<manifest>
 				<attribute name="Main-Class" value="${executableMainClass}" />
 			</manifest>
