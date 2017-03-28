@@ -48,14 +48,27 @@ public class Words
   {
     if (words == null)
     {
-      words = new HashMap<Integer, ArrayList<String>>();
-      importWords("words/words.txt");
-      importWords("words/fun_words.txt");
-      importWords("words/punctuation.txt");
+      words = importWords();
     }
     return words;
   }
-  public static void importWords(String filename) throws Error
+private static HashMap<Integer, ArrayList<String>> importWords() throws Error {
+	boolean finnish = true;
+	return finnish ? importFinnishWords() :  importEnglishWords();
+}
+private static HashMap<Integer, ArrayList<String>> importFinnishWords() throws Error {
+	HashMap<Integer, ArrayList<String>> words2 = new HashMap<Integer, ArrayList<String>>();
+      importWords(words2, "words/words_suomi.txt");
+	return words2;
+}
+private static HashMap<Integer, ArrayList<String>> importEnglishWords() throws Error {
+	HashMap<Integer, ArrayList<String>> words2 = new HashMap<Integer, ArrayList<String>>();
+	importWords(words2, "words/words.txt");
+	importWords(words2, "words/fun_words.txt");
+	importWords(words2, "words/punctuation.txt");
+	return words2;
+}
+  public static void importWords(HashMap<Integer,ArrayList<String>> words2, String filename) throws Error
   {
     InputStream resourceAsStream = Words.class.getResourceAsStream(filename);
     BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
@@ -66,7 +79,7 @@ public class Words
         String word = reader.readLine().trim();
         if (!StringUtils.isEmpty(word))
         {
-          SharkBatch.add(words, word.length(), word);
+          SharkBatch.add(words2, word.length(), word);
         }
       }
       reader.close();
