@@ -14,11 +14,12 @@ public class SharkBatch implements Actor
   private DeepDiveTypingGame                 game;
   private HashMap<Integer, ArrayList<Shark>> sharks = new HashMap<Integer, ArrayList<Shark>>();
   private int                                frames;
+  private int startingSharks = 0;
   public SharkBatch(DeepDiveTypingGame game)
   {
     this.game = game;
     this.game.score.scoreNewBatch();
-    addSharks(3 + game.score.getBatch());
+	addSharks(startingSharks + game.score.getBatch());
     Sounds.playDiveUnderwater();
   }
   private void addSharks(int number)
